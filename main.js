@@ -1,7 +1,7 @@
 function getData(){
     fetch("http://localhost:3000/films")
     .then((response)=>response.json())
-    .then((json)=>renderPosters(json))
+    .then((json)=>renderSidebar(json))
 }
 getData()
 
@@ -25,7 +25,7 @@ function renderPosters(films){
         let movieDescription=document.createElement('p')
 
         let availableTickets=film.capacity-film.tickets_sold
-        movieDescription.innerHTML = `<p>Description:${film.description}}</p>
+        movieDescription.innerHTML = `<p>Description:${film.description}</p>
                                     <p>Runtime: ${film.runtime} min</p>
                                     <p>Showtime: ${film.showtime}</p>
                                     <p>Available Tickets: ${availableTickets}</p>`
@@ -38,5 +38,20 @@ function renderPosters(films){
         
     });
     
+}
+
+function renderSidebar(films){
+    let sideBarContent=document.querySelector('.sidebar')
+    let movieList=document.createElement('ul')
+    movieList.className = 'films'
+    films.forEach(film=>{
+        let movieListItem=document.createElement('li')
+        movieListItem.innerHTML = `${film.title}`
+        movieListItem.className='film item'
+        movieList.appendChild(movieListItem)
+    })
+    sideBarContent.appendChild(movieList)
+    renderPosters(films)
+
 }
 
