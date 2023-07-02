@@ -27,9 +27,31 @@ function renderPosters(films){
         let availableTickets=film.capacity-film.tickets_sold
         movieDescription.innerHTML = `<p>Description:${film.description}</p>
                                     <p>Runtime: ${film.runtime} min</p>
-                                    <p>Showtime: ${film.showtime}</p>
-                                    <p>Available Tickets: ${availableTickets}</p>`
+                                    <p>Showtime: ${film.showtime}</p>`
+        let movieTickets=document.createElement('p')                           
+
+        movieTickets.innerHTML=`<p>Available Tickets: ${availableTickets}</p>`
+        movieDescription.appendChild(movieTickets)
         movieDetails.appendChild(movieDescription)
+
+        let btn=document.createElement('button')
+        btn.innerHTML = 'Buy a ticket'
+        btn.addEventListener('click', ()=>{
+            if(availableTickets>=1){
+                btn.innerHTML=`Ticket purchased`
+                btn.style.backgroundColour = `light blue`
+                availableTickets--
+                movieTickets.innerHTML=`<p>Available Tickets: ${availableTickets}</p>`
+            }else {
+                btn.innerHTML=`sold out`
+                btn.style.backgroundColour = `red`
+                movieTickets.innerHTML=`<p>Available Tickets: ${availableTickets}</p>`
+            }
+            console.log(films)
+        
+        })
+
+        movieDetails.appendChild(btn)
         movieCard.appendChild(movieDetails)
 
         content.appendChild(movieCard)
@@ -47,11 +69,24 @@ function renderSidebar(films){
     films.forEach(film=>{
         let movieListItem=document.createElement('li')
         movieListItem.innerHTML = `${film.title}`
-        movieListItem.className='film item'
+        movieListItem.className='film-item'
         movieList.appendChild(movieListItem)
     })
     sideBarContent.appendChild(movieList)
     renderPosters(films)
 
 }
+
+// function buyTicket(film){
+//     let availableTickets=film.capacity-film.tickets_sold
+//     if(availableTickets>0){
+//         btn.innerHTML=`Ticket purchased`
+//         btn.style.backgroundColour = `rgb(98, 98, 247)`
+//         availableTickets--
+//     }else {
+//         btn.innerHTML=`sold out`
+//         btn.style.backgroundColour = `red`
+//     }
+
+// }
 

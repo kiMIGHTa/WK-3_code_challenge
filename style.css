@@ -1,34 +1,112 @@
-.card {
-    /* Add shadows to create the "card" effect */
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #000;
+    color: #fff;
+    margin: 0;
+  }
+  
+  /* Card Styling */
+  .card {
+    background-color: #222;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     transition: 0.3s;
-    margin: 15px;
+    margin: 40px;
+    overflow: hidden;
   }
   
-  /* On mouse-over, add a deeper shadow */
   .card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4);
   }
   
-  /* Add some padding inside the card container */
   .container {
-    padding: 2px 16px;
+    padding: 20px;
   }
+  
+  /* h3 {
+    margin: 0;
+    font-size: 20px;
+  } */
+  
+  p {
+    margin: 10px 0;
+  }
+  
+  img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px 10px 0 0;
+  }
+  
+  /* Sidebar Styling */
   .sidebar {
-    width: 25%;
+    width: 20%;
     text-align: center;
- 
+    background-color: #1f1f1f;
+    color: #fff;
+    padding: 20px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow-y: auto;
   }
-
-  .content{
+  
+  .films {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .film-item {
+    padding: 10px 0;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .film-item:hover {
+    background-color: #333;
+  }
+  
+  /* Content Styling */
+  .content {
     margin-left: 25%;
+    padding: 20px;
   }
-  main{
-    display: flex;
-    margin-bottom: 15px;
-    margin-top: 15px;
+  
+  /* Button Styling */
+  button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
   }
-
-  img{
-    width: 200px;
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  /* Responsive Styling */
+  @media (max-width: 768px) {
+    .sidebar {
+      width: 100%;
+      position: static;
+      height: auto;
+      margin-bottom: 20px;
+      overflow-y: visible;
+    }
+  
+    .content {
+      margin-left: 0;
+      padding: 10px;
+    }
   }
