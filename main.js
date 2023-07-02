@@ -42,12 +42,15 @@ function renderPosters(films){
                 btn.style.backgroundColour = `light blue`
                 availableTickets--
                 movieTickets.innerHTML=`<p>Available Tickets: ${availableTickets}</p>`
+                film.tickets_sold++
+                updateServer()
             }else {
                 btn.innerHTML=`sold out`
                 btn.style.backgroundColour = `red`
                 movieTickets.innerHTML=`<p>Available Tickets: ${availableTickets}</p>`
+                updateServer()
             }
-            console.log(films)
+            // console.log(films)
         
         })
 
@@ -57,8 +60,24 @@ function renderPosters(films){
         content.appendChild(movieCard)
 
 
+
+        function updateServer(){
+            fetch(`http://localhost:3000/films/${film.id}`, {
+              method: 'PATCH',
+              headers:{
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(film)
+            })
+            .then(res => res.json())
+            .then(film => console.log(film))
+        
+           }
+
+
         
     });
+   
     
 }
 
@@ -77,16 +96,5 @@ function renderSidebar(films){
 
 }
 
-// function buyTicket(film){
-//     let availableTickets=film.capacity-film.tickets_sold
-//     if(availableTickets>0){
-//         btn.innerHTML=`Ticket purchased`
-//         btn.style.backgroundColour = `rgb(98, 98, 247)`
-//         availableTickets--
-//     }else {
-//         btn.innerHTML=`sold out`
-//         btn.style.backgroundColour = `red`
-//     }
 
-// }
 
